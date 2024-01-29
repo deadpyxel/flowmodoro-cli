@@ -49,3 +49,6 @@ tags
 
 # Build artifacts
 bin/
+
+# state file for the application
+state.json
