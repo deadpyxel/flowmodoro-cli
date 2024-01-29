@@ -7,8 +7,8 @@ import (
 )
 
 type FlowmodoroState struct {
-	SessiionActive bool      `json:"session_active"`
-	StartTime      time.Time `json:"start_time"`
+	SessionActive bool      `json:"session_active"`
+	StartTime     time.Time `json:"start_time"`
 }
 
 func SaveState(state FlowmodoroState, filepath string) error {
