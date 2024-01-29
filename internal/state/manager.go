@@ -9,6 +9,7 @@ import (
 type FlowmodoroState struct {
 	SessionActive bool      `json:"session_active"`
 	StartTime     time.Time `json:"start_time"`
+	StopTime      time.Time `json:"stop_time"`
 }
 
 func SaveState(state FlowmodoroState, filepath string) error {
