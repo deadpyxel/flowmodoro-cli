@@ -27,10 +27,12 @@ func startSession(cmd *cobra.Command, args []string) error {
 			}
 		}
 	}
+	// If there is an active session, send a message and exit early
 	if st.SessionActive {
 		fmt.Println("A flowmodoro session is already in progress")
 		return nil
 	}
+	// Set the current start time and the session as active
 	st.StartTime = time.Now()
 	st.SessionActive = true
 	err = state.SaveState(st, "state.json")
@@ -43,5 +45,4 @@ func startSession(cmd *cobra.Command, args []string) error {
 
 func init() {
 	rootCmd.AddCommand(startCmd)
-	// initialize sessionActive as false when the application starts
 }
