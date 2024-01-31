@@ -32,7 +32,7 @@ func stopSession(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	fmt.Printf("Flowmodoro session stopped at %v\n", st.StartTime.Format("15:04:05"))
+	fmt.Printf("Flowmodoro session stopped at %v\n", st.StopTime.Format("15:04:05"))
 	return nil
 }
 
