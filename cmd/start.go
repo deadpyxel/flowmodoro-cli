@@ -34,6 +34,7 @@ func startSession(cmd *cobra.Command, args []string) error {
 	}
 	// Set the current start time and the session as active
 	st.StartTime = time.Now()
+	st.StopTime = time.Time{} // Clear StopTime
 	st.SessionActive = true
 	err = state.SaveState(st, "state.json")
 	if err != nil {
