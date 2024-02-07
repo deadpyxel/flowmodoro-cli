@@ -52,3 +52,5 @@ bin/
 
 # state file for the application
 state.json
+# local configuration file
+config.yaml
