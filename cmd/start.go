@@ -8,6 +8,7 @@ import (
 
 	"github.com/deadpyxel/flowmodoro-cli/internal/state"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var startCmd = &cobra.Command{
@@ -18,10 +19,11 @@ var startCmd = &cobra.Command{
 }
 
 func startSession(cmd *cobra.Command, args []string) error {
-	st, err := state.LoadState("state.json")
+	statePath := viper.GetString("statePath")
+	st, err := state.LoadState(statePath)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
-			_, err := os.Create("state.json")
+			_, err := os.Create(statePath)
 			if err != nil {
 				return err
 			}
@@ -36,7 +38,7 @@ func startSession(cmd *cobra.Command, args []string) error {
 	st.StartTime = time.Now()
 	st.StopTime = time.Time{} // Clear StopTime
 	st.SessionActive = true
-	err = state.SaveState(st, "state.json")
+	err = state.SaveState(st, statePath)
 	if err != nil {
 		return err
 	}

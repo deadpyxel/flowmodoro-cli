@@ -6,6 +6,7 @@ import (
 
 	"github.com/deadpyxel/flowmodoro-cli/internal/state"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var stopCmd = &cobra.Command{
@@ -16,7 +17,8 @@ var stopCmd = &cobra.Command{
 }
 
 func stopSession(cmd *cobra.Command, args []string) error {
-	st, err := state.LoadState("state.json")
+	statePath := viper.GetString("statePath")
+	st, err := state.LoadState(statePath)
 	if err != nil {
 		return err
 	}
@@ -27,7 +29,7 @@ func stopSession(cmd *cobra.Command, args []string) error {
 	st.SessionActive = false
 	st.StopTime = time.Now()
 
-	err = state.SaveState(st, "state.json")
+	err = state.SaveState(st, statePath)
 	if err != nil {
 		return err
 	}
